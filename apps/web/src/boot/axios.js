@@ -1,9 +1,10 @@
 import { defineBoot } from '#q-app';
 import axios from 'axios'
-import { Notify } from 'quasar'
+import { LocalStorage, Notify } from 'quasar'
 
 const getToken = () => {
-  return '1|foAIPF9SMpU6429vc7yx9FEi37d2DWwKdIsTKzcPe2c35e9c';
+  const auth = LocalStorage.getItem('auth_data')
+  return auth?.token ?? null;
 }
 
 const api = axios.create({ baseURL: import.meta.env.QCLI_API_URL })
@@ -18,7 +19,10 @@ api.interceptors.request.use((config) => {
 }, (error) => Promise.reject(error));
 
 api.interceptors.response.use((response) => response, (error) => {
-  const { code } = error?.response?.data ?? {}
+  const { code } = error?.response?.data
+    ?? error?.response?.status
+    ?? error?.code
+    ?? {}
 
   if (code) {
     Notify.create({
