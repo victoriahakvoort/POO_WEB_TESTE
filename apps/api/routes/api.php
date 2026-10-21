@@ -6,6 +6,7 @@ use App\Http\Controllers\CustomerController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\OrderController;
 use App\Http\Controllers\ReviewController;
+use App\Http\Controllers\UploadController;
 
 
 
@@ -50,3 +51,6 @@ Route::group([
     Route::apiResource('orders', OrderController::class);
     Route::apiResource('reviews', ReviewController::class);
 });
+
+//rota de upload (fora do grupo protegido)
+Route::post('/upload', [UploadController::class, 'upload']);
