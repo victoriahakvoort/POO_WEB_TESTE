@@ -50,7 +50,7 @@ Route::group([
     Route::apiResource('customers', CustomerController::class);
     Route::apiResource('orders', OrderController::class);
     Route::apiResource('reviews', ReviewController::class);
+    Route::post('/upload', [UploadController::class, 'upload']);
 });
 
 //rota de upload (fora do grupo protegido)
-Route::post('/upload', [UploadController::class, 'upload']);

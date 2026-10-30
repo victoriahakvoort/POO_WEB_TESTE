@@ -51,3 +51,17 @@ php artisan db:seed OrderSeeder
 php artisan make:request ReviewUpdateRequest
 grep -rn "RequestUpdateRequest" app routes
 exit
+php artisan make:migration add_columns_to_products_table
+php artisan migrate
+php artisan storage:link
+php artisan storage:link
+php artisan config:clear
+php artisan migrate
+php artisan migrate
+php artisan migrate:status
+docker compose exec quasar sh
+docker exec -it poo_web_quasar bash
+docker exec -it poo_web_quasar sh
+docker compose ps
+exit
+exit
